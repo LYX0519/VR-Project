@@ -1,17 +1,24 @@
 using UnityEngine;
 
+[RequireComponent(typeof(CharacterController))]
 public class ThirdPersonMovement : MonoBehaviour
 {
     public float speed = 5f;
     public Transform cameraTransform;
-    public Transform modelTransform; // optional: for just rotating the visual
+    public Transform modelTransform;
+
+    private CharacterController controller;
+
+    void Start()
+    {
+        controller = GetComponent<CharacterController>();
+    }
 
     void Update()
     {
-        float h = Input.GetAxis("Horizontal"); // A/D or Left/Right
-        float v = Input.GetAxis("Vertical");   // W/S or Up/Down
+        float h = Input.GetAxis("Horizontal");
+        float v = Input.GetAxis("Vertical");
 
-        // Get camera directions
         Vector3 camForward = cameraTransform.forward;
         Vector3 camRight = cameraTransform.right;
         camForward.y = 0;
@@ -19,13 +26,11 @@ public class ThirdPersonMovement : MonoBehaviour
         camForward.Normalize();
         camRight.Normalize();
 
-        // Move direction
         Vector3 move = camForward * v + camRight * h;
 
-        // Move the character (can move in any direction)
-        transform.Translate(move * speed * Time.deltaTime, Space.World);
+        // Apply movement using CharacterController
+        controller.Move(move * speed * Time.deltaTime);
 
-        // Only rotate the character if pressing forward (W or ↑)
         if (move.magnitude > 0.1f && v > 0f)
         {
             Quaternion targetRotation = Quaternion.LookRotation(move, Vector3.up);
