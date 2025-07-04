@@ -20,10 +20,18 @@ public class PipeSpawner : MonoBehaviour
         }
     }
 
-    void SpawnPipe()
-    {
-        GameObject newPipe = Instantiate(pipePrefab, transform);
-        float randomY = Random.Range(minY, maxY);
-        newPipe.GetComponent<RectTransform>().anchoredPosition = new Vector2(50f, randomY);
-    }
+   void SpawnPipe()
+{
+    GameObject newPipe = Instantiate(pipePrefab, transform);
+
+    float randomY = Random.Range(minY, maxY);
+
+    // Move pipe into correct Y position
+    newPipe.GetComponent<RectTransform>().anchoredPosition = new Vector2(50f, randomY);
+
+    // ✅ Send this Y position as the center of the scoring gap
+    newPipe.GetComponent<PipeMovement>().gapYCenter = randomY;
+}
+
+    
 }

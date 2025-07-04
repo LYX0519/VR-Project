@@ -10,6 +10,7 @@ public class DoorOpenTrigger : MonoBehaviour
     private Quaternion initialRotation;
     private Quaternion targetRotation;
 
+ public AudioSource openSound;
     void Start()
     {
         initialRotation = door.rotation;
@@ -21,6 +22,8 @@ public class DoorOpenTrigger : MonoBehaviour
         if (playerInZone && Input.GetKeyDown(KeyCode.E))
         {
             isOpen = !isOpen;
+             if (isOpen && openSound != null)
+                openSound.Play();
         }
 
         if (isOpen)

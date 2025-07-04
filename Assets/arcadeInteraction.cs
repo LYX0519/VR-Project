@@ -2,22 +2,25 @@ using UnityEngine;
 
 public class ArcadeInteraction : MonoBehaviour
 {
-    public GameObject promptUI;        // Text that says "Press E to play"
-    public GameObject miniGameCanvas; // The whole mini-game group
+    public GameObject promptUI;        
+    public GameObject miniGameCanvas; 
+    public AudioSource startAudioSource; 
 
     private bool isPlayerNear = false;
 
     void Start()
     {
-        miniGameCanvas.SetActive(false); // Make sure it's off at start
+        miniGameCanvas.SetActive(false); 
+       
     }
 
     void Update()
     {
         if (isPlayerNear && Input.GetKeyDown(KeyCode.E))
         {
-            miniGameCanvas.SetActive(true);  // Start the mini-game
-            promptUI.SetActive(false);       // Hide prompt
+            miniGameCanvas.SetActive(true);  
+            promptUI.SetActive(false);  
+             startAudioSource.Play();     
         }
     }
 
@@ -36,7 +39,8 @@ public class ArcadeInteraction : MonoBehaviour
         {
             isPlayerNear = false;
             promptUI.SetActive(false);
-             miniGameCanvas.SetActive(false);
+            miniGameCanvas.SetActive(false);
+            startAudioSource.Stop(); 
         }
     }
 }
