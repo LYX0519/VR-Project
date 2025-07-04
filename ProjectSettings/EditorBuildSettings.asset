@@ -9,6 +9,6 @@ EditorBuildSettings:
     path: Assets/miniArcadeGame.unity
     guid: b71cc2d606b2bb145b69fec27d5c43e0
   - enabled: 1
-    path: Assets/Scenes/SampleScene.unity
+    path: Assets/Scenes/House.unity
     guid: 9fc0d4010bbf28b4594072e72b8655ab
   m_configObjects: {}
