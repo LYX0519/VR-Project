@@ -5,11 +5,13 @@ TagManager:
   serializedVersion: 2
   tags:
   - Pipe
+  - Basketball
+  - BasketballHoop
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Basketball
   - Water
   - UI
   - 
